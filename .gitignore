@@ -34,3 +34,4 @@ build/
 
 ### custom ###
 application-prod.properties
+application-API-KEY.properties

@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h1>Index</h1>
+	<a href="/payment/test/checkout">Payment Test</a>
 </body>
 </html>
