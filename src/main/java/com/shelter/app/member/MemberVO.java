@@ -14,23 +14,23 @@ import lombok.ToString;
 public class MemberVO {
 	private Long memberId;
 	
-	@NotBlank(message = "ID를 입력해 주세요.", groups = LoginGroup.class)
+	@NotBlank(message = "ID를 입력해 주세요.", groups = {LoginGroup.class, JoinGroup.class})
 	private String username;
 	
-	@NotBlank(message = "비밀번호를 입력해 주세요.", groups = LoginGroup.class)
+	@NotBlank(message = "비밀번호를 입력해 주세요.", groups = {LoginGroup.class, JoinGroup.class})
 	private String password;
 	
 	private String passwordCheck;
 	
-	@NotBlank(message = "이름을 입력해 주세요.")
+	@NotBlank(message = "이름을 입력해 주세요.", groups = {JoinGroup.class})
 	private String name;
 	
 	private Character gender;
 	private Integer age;
 	private String email;
 	
-	@NotBlank(message = "전화번호를 입력해 주세요.")
-	@Pattern(regexp = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$\r\n")
+	@NotBlank(message = "전화번호를 입력해 주세요.", groups = {JoinGroup.class})
+//	@Pattern(regexp = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$\r\n")
 	private String phone;
 	
 	private boolean hasPet;

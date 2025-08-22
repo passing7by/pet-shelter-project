@@ -81,4 +81,10 @@
 		SET account_non_expired = 0
 		WHERE member_id = #{memberId}
   	</update>
+  	
+  	<select id="checkUsername" parameterType="MemberVO">
+  		SELECT username
+  		FROM member
+  		WHERE username = #{username}
+  	</select>
   </mapper>

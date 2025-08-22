@@ -76,7 +76,17 @@ public class MemberController {
 	}
 	
 	@PostMapping("join")
-	public String join(@Valid MemberVO memberVO, Model model, HttpServletRequest req) throws Exception {
+	public String join(@Validated MemberVO memberVO, BindingResult bindingResult, Model model, HttpServletRequest req) throws Exception {
+		// 유효성 검증
+		boolean hasError = memberService.hasMemberError(memberVO, bindingResult);
+		
+		if(hasError) {
+			System.out.println(bindingResult);
+			model.addAttribute("memberVO", memberVO);
+			
+			return "member/join";
+		}
+		
 		// 비밀번호 암호화
 		memberVO.setPassword(req.getParameter("password"));
 		
