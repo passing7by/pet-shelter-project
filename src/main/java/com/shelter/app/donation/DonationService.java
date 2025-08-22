@@ -1,7 +1,5 @@
 package com.shelter.app.donation;
 
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +19,10 @@ public class DonationService {
 	
 	public int completeDonation(DonationVO donationVO) throws Exception {
 		return donationDAO.completeDonation(donationVO);		
+	}
+	
+	public Integer sumDonation(DonationVO donationVO) throws Exception {
+		return donationDAO.sumDonation(donationVO);
 	}
 
 }

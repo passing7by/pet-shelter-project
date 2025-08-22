@@ -16,6 +16,6 @@ public class InterceptorConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(logingInterceptor).addPathPatterns("/", "/member/**", "/pet/**", "/donation/**", "/ask/**");
-		registry.addInterceptor(adminPageInterceptor).addPathPatterns("/pet/add", "/pet/update");
+		registry.addInterceptor(adminPageInterceptor).addPathPatterns("/pet/add", "/pet/update", "/donation/sum");
 	}
 }

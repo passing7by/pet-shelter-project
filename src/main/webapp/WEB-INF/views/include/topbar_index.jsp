@@ -33,6 +33,9 @@
 					<li class="nav-item ">
 						<a href="/ask/list" class="nav-link smoth-scroll"> 문의 </a>
 					</li>
+					<li class="nav-item ">
+						<a href="/donation/sum" class="nav-link smoth-scroll"> 합계 </a>
+					</li>
 				</ul>
 				
 				<c:choose>

@@ -38,11 +38,7 @@
 			</table>
 
 			<div>
-				<c:forEach items="${member.roleVOs }" var="role">
-					<c:if test="${role.authorId eq 2}">
 						<a href="./add" class="btn btn-success">등록</a>
-					</c:if>
-				</c:forEach>
 			</div>
 
 			<!-- Contents 끝 -->

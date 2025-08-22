@@ -17,7 +17,7 @@
 			javaType="com.shelter.app.member.MemberVO">
 			<id column="member_id" property="memberId" />
 			<result column="username" property="username" />
-			<result column="name" property="name"/>
+			<result column="name" property="name" />
 		</association>
 
 		<association property="petVO"
@@ -26,6 +26,15 @@
 		</association>
 
 	</resultMap>
+
+	<select id="findDonation" parameterType="String"
+		resultMap="detailResult">
+		SELECT * FROM donation d
+		JOIN member m
+		USING (member_id)
+		WHERE
+		order_id = #{orderId}
+	</select>
 
 	<insert id="createDonation" parameterType="DonationVO">
 		INSERT INTO donation (
@@ -36,16 +45,21 @@
 		#{donationPrice}, #{orderId}, #{status})
 	</insert>
 
-	<select id="findDonation" parameterType="String" resultMap="detailResult">
-		SELECT * FROM donation d
-		JOIN member m
-		USING (member_id)
-		WHERE order_id = #{orderId}
-	</select>
-	
 	<update id="completeDonation" parameterType="DonationVO">
-		UPDATE donation SET status = 'COMPLETED'
+		UPDATE donation SET
+		status = 'COMPLETED'
 		WHERE order_id = #{orderId}
 	</update>
-	
+
+	<select id="sumDonation" parameterType="DonationVO"
+		resultType="Integer">
+		SELECT SUM(donation_price)
+		FROM donation
+		WHERE
+		YEAR(donation_date) =
+		YEAR(#{donationDate}) AND MONTH(donation_date) =
+		MONTH(#{donationDate})
+
+	</select>
+
 </mapper>

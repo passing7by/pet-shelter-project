@@ -14,10 +14,10 @@
       const clientKey = "test_ck_0RnYX2w532qNWl7ogOeM8NeyqApQ";
       const customerKey = "fkmC5F5JMSN9DTB4dBlq6";
       const tossPayments = TossPayments(clientKey);
-      const orderId ='${orderId}';
-      const name ='${memberVO.name}';
+      const donationVO =${donationVO};
+     
       
-      console.log(orderId);
+      console.log(donationVO.orderId);
       // 회원 결제
       // @docs https://docs.tosspayments.com/sdk/v2/js#tosspaymentspayment
       const payment = tossPayments.payment({ customerKey });
@@ -35,13 +35,16 @@
             currency: "KRW",
             value: 10000,
           },
-          orderId: orderId, // 고유 주문번호
+          orderId: donationVO.orderId , // 고유 주문번호
           orderName: "동물 후원",
+          
+          customerName: donationVO.memberVO.name,
+          customerEmail: donationVO.memberVO.email,
+          customerMobilePhone: donationVO.member,
+          
           successUrl: window.location.origin + "/donation/success", // 결제 요청이 성공하면 리다이렉트되는 URL
-          failUrl: window.location.origin + "/fail", // 결제 요청이 실패하면 리다이렉트되는 URL
-          customerEmail: "customer123@gmail.com",
-          customerName: "김토스",
-          customerMobilePhone: "01012341234",
+          failUrl: window.location.origin + "/donation/fail", // 결제 요청이 실패하면 리다이렉트되는 URL
+          
           // 카드 결제에 필요한 정보
           card: {
             useEscrow: false,
