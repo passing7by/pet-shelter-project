@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +32,17 @@ public class MemberController {
 	}
 	
 	@PostMapping("login")
-	public String login(@Validated(LoginGroup.class) MemberVO memberVO, Model model, HttpSession session, HttpServletRequest req) throws Exception {
+	public String login(@Validated(LoginGroup.class) MemberVO memberVO, BindingResult bindingResult, Model model, HttpSession session, HttpServletRequest req) throws Exception {
+		// 유효성 검증
+		boolean hasError = memberService.hasMemberError(memberVO, bindingResult);
+		
+		if(hasError) {
+			System.out.println(bindingResult);
+			model.addAttribute("memberVO", memberVO);
+			
+			return "member/login";
+		}
+		
 		// 비밀번호 암호화
 		memberVO.setPassword(req.getParameter("password"));
 		System.out.println("[MemberController] login - memberVO" + memberVO);
