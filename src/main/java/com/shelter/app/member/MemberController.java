@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import com.shelter.app.pet.PetVO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -29,7 +31,7 @@ public class MemberController {
 	}
 	
 	@PostMapping("login")
-	public String login(MemberVO memberVO, Model model, HttpSession session, HttpServletRequest req) throws Exception {
+	public String login(@Validated(LoginGroup.class) MemberVO memberVO, Model model, HttpSession session, HttpServletRequest req) throws Exception {
 		// 비밀번호 암호화
 		memberVO.setPassword(req.getParameter("password"));
 		System.out.println("[MemberController] login - memberVO" + memberVO);
@@ -63,7 +65,7 @@ public class MemberController {
 	}
 	
 	@PostMapping("join")
-	public String join(MemberVO memberVO, Model model, HttpServletRequest req) throws Exception {
+	public String join(@Valid MemberVO memberVO, Model model, HttpServletRequest req) throws Exception {
 		// 비밀번호 암호화
 		memberVO.setPassword(req.getParameter("password"));
 		
@@ -95,7 +97,7 @@ public class MemberController {
 	}
 	
 	@PostMapping("update")
-	public String upate(MemberVO memberVO, Model model, HttpSession session) throws Exception {
+	public String upate(@Valid MemberVO memberVO, Model model, HttpSession session) throws Exception {
 		// 서비스 호출
 		int result = memberService.update(memberVO);
 		
