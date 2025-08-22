@@ -20,6 +20,8 @@ public class MemberVO {
 	@NotBlank(message = "비밀번호를 입력해 주세요.", groups = LoginGroup.class)
 	private String password;
 	
+	private String passwordCheck;
+	
 	@NotBlank(message = "이름을 입력해 주세요.")
 	private String name;
 	
@@ -28,6 +30,7 @@ public class MemberVO {
 	private String email;
 	
 	@NotBlank(message = "전화번호를 입력해 주세요.")
+	@Pattern(regexp = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$\r\n")
 	private String phone;
 	
 	private boolean hasPet;
