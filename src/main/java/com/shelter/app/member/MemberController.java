@@ -34,7 +34,7 @@ public class MemberController {
 	@PostMapping("login")
 	public String login(@Validated(LoginGroup.class) MemberVO memberVO, BindingResult bindingResult, Model model, HttpSession session, HttpServletRequest req) throws Exception {
 		// 유효성 검증
-		boolean hasError = memberService.hasMemberError(memberVO, bindingResult);
+		boolean hasError = bindingResult.hasErrors();;
 		
 		if(hasError) {
 			System.out.println(bindingResult);
@@ -118,7 +118,17 @@ public class MemberController {
 	}
 	
 	@PostMapping("update")
-	public String upate(@Valid MemberVO memberVO, Model model, HttpSession session) throws Exception {
+	public String upate(@Validated(JoinGroup.class) MemberVO memberVO, BindingResult bindingResult, Model model, HttpSession session) throws Exception {
+		// 유효성 검증
+		boolean hasError = bindingResult.hasErrors();
+		
+		if(hasError) {
+			System.out.println(bindingResult);
+			model.addAttribute("memberVO", memberVO);
+			
+			return "member/update";
+		}
+		
 		// 서비스 호출
 		int result = memberService.update(memberVO);
 		

@@ -23,10 +23,12 @@
 					<div class="col-md-6">
 						<label for="username" class="form-label">아이디</label>
 						<form:input path="username" cssClass="form-control"/>
+						<form:errors path="username"/>
 					</div>
 					<div class="col-md-6">
 						<label for="name" class="form-label">이름</label>
 						<form:input path="name" cssClass="form-control"/>
+						<form:errors path="name"/>
 					</div>
 					<div class="col-12">
 						<label for="email" class="form-label">이메일</label>
@@ -35,6 +37,7 @@
 					<div class="col-12">
 						<label for="phone" class="form-label">전화번호</label> 
 						<form:input path="phone" cssClass="form-control"/>
+						<form:errors path="phone"/>
 					</div>
 					
 					<div class="col-md-4" style="padding:6px 12px 6px 15px">
