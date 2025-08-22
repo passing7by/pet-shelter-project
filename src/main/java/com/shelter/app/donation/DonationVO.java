@@ -22,14 +22,10 @@ public class DonationVO {
 	private PetVO petVO;
 
 	private Long memberId;
-	private Long petId;
-	
-	
+	private Long petId;	
 	
 	private String orderId;
-
 	private String paymentKey;
-
 	private String status;
 
 }

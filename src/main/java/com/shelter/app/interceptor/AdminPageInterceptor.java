@@ -23,7 +23,9 @@ public class AdminPageInterceptor implements HandlerInterceptor {
 		if (request.getMethod().equalsIgnoreCase("post")) return;
 		
 		HttpSession session = request.getSession(false);
+		
 		String url = "./list";
+		if (request.getRequestURI().equals("/donation/sum")) url = "/";
 		String msg = "권한이 없습니다.";
 		if(session == null || session.getAttribute("member") == null) {
 			modelAndView.setViewName("commons/result");
