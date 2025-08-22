@@ -159,6 +159,19 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		
+		<!-- 빌드 시 resources에 없는 xml도 인식하도록 함 -->
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
 	</build>
 
 </project>
