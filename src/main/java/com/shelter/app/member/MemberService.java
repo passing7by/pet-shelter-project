@@ -24,13 +24,13 @@ public class MemberService {
 		
 		// 2. 사용자 정의로 패스워드가 일치하는지 검증   
 		if(!memberVO.getPassword().equals(memberVO.getPasswordCheck())) {
-			bindingResult.rejectValue("passwordCheck", "비밀번호가 일치하지 않습니다.");
+			bindingResult.rejectValue("passwordCheck", "member.password.notEqual");
 		}
 		
 		// 3. ID 중복 검사
 		if(memberDAO.checkUsername(memberVO) != null) {
 			hasError = true;
-			bindingResult.rejectValue("username", "이미 존재하는 아이디입니다.");
+			bindingResult.rejectValue("username", "member.username.duplicate");
 		}
 		
 		return hasError;

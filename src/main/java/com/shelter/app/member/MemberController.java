@@ -76,7 +76,7 @@ public class MemberController {
 	}
 	
 	@PostMapping("join")
-	public String join(@Validated MemberVO memberVO, BindingResult bindingResult, Model model, HttpServletRequest req) throws Exception {
+	public String join(@Validated(JoinGroup.class) MemberVO memberVO, BindingResult bindingResult, Model model, HttpServletRequest req) throws Exception {
 		// 유효성 검증
 		boolean hasError = memberService.hasMemberError(memberVO, bindingResult);
 		
